@@ -32,9 +32,55 @@
       justify-content: center;
     }
 
+    .lang-toggle-bar {
+      position: fixed;
+      top: 14px;
+      inset-inline: 0;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .lang-toggle-inner {
+      pointer-events: auto;
+      display: inline-flex;
+      gap: 4px;
+      padding: 4px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    .lang-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 12px;
+      cursor: pointer;
+      background: transparent;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .lang-btn.is-active {
+      background: #111111;
+      color: #ffffff;
+    }
+
     .page {
       width: 100%;
       max-width: 960px;
+      margin-top: 32px; /* space under toggle */
+    }
+
+    .lang-section {
+      display: none;
+    }
+
+    .lang-section.active {
+      display: block;
     }
 
     header {
@@ -74,6 +120,7 @@
     .lodging-strip {
       display: flex;
       flex-wrap: wrap;
+      align-items: center; /* <-- keeps label aligned vertically with pills */
       gap: 8px;
       font-size: 12px;
       padding: 10px 14px;
@@ -208,7 +255,16 @@
   </style>
 </head>
 <body>
-  <main class="page">
+  <!-- Language toggle -->
+  <div class="lang-toggle-bar">
+    <div class="lang-toggle-inner">
+      <button class="lang-btn is-active" data-switch-lang="en">English</button>
+      <button class="lang-btn" data-switch-lang="ko">한국어</button>
+    </div>
+  </div>
+
+  <!-- ENGLISH VERSION -->
+  <main class="page lang-section active" data-lang="en">
     <header>
       <div class="badge-row">
         <span class="badge">Family Thanksgiving Trip · 2025</span>
@@ -221,7 +277,7 @@
       </p>
 
       <div class="lodging-strip">
-        <span class="lodging-label">Lodging (Thu & Sat nights):</span>
+        <span class="lodging-label">Lodging (Thu &amp; Sat nights):</span>
         <span class="lodging-pill">Amy &amp; John · MGM Grand</span>
         <span class="lodging-pill">Mom &amp; Dad · Wynn Las Vegas</span>
         <span class="lodging-pill">Fri night · El Tovar Hotel (Grand Canyon)</span>
@@ -236,7 +292,7 @@
             <div class="day-name">Thursday</div>
             <div class="day-date">Nov 27 · Los Angeles → Las Vegas</div>
           </div>
-          <div class="day-tag">Drive & settle in</div>
+          <div class="day-tag">Drive &amp; settle in</div>
         </div>
         <div class="timeline">
           <div class="item">
@@ -251,7 +307,7 @@
           </div>
           <div class="item">
             <div class="time">12:30–14:00</div>
-            <div class="title">Check-in & Lunch</div>
+            <div class="title">Check-in &amp; Lunch</div>
             <div class="note">
               Amy &amp; John check in at <strong>MGM Grand</strong>.  
               Mom &amp; Dad check in at <strong>Wynn Las Vegas</strong>. Quick lunch nearby.
@@ -259,14 +315,14 @@
           </div>
           <div class="item">
             <div class="time">14:00–17:00</div>
-            <div class="title">Rest & Light Exploring</div>
+            <div class="title">Rest &amp; Light Exploring</div>
             <div class="note">
               Pool, nap, or short walk around each hotel; keep energy low-key.
             </div>
           </div>
           <div class="item">
             <div class="time">17:30–20:30</div>
-            <div class="title">Family Dinner & Strip Walk</div>
+            <div class="title">Family Dinner &amp; Strip Walk</div>
             <div class="note">
               Meet up somewhere central (e.g., near Bellagio/Aria), early dinner, quick look at fountains/lights, back to hotels for an early night.
             </div>
@@ -281,31 +337,31 @@
             <div class="day-name">Friday</div>
             <div class="day-date">Nov 28 · Vegas → Grand Canyon</div>
           </div>
-          <div class="day-tag">South Rim & sunset</div>
+          <div class="day-tag">South Rim &amp; sunset</div>
         </div>
         <div class="timeline">
           <div class="item">
             <div class="time">6:00–6:30</div>
-            <div class="title">Breakfast & Checkout</div>
+            <div class="title">Breakfast &amp; Checkout</div>
             <div class="note">
-              Quick coffee/breakfast, check out of MGM Grand & Wynn, load car.
+              Quick coffee/breakfast, check out of MGM Grand &amp; Wynn, load car.
             </div>
           </div>
           <div class="item">
             <div class="time">6:30–11:30</div>
             <div class="title">Drive to Grand Canyon South Rim</div>
-            <div class="note">Via US-93 & I-40, one or two short stops for bathroom/snacks.</div>
+            <div class="note">Via US-93 &amp; I-40, one or two short stops for bathroom/snacks.</div>
           </div>
           <div class="item">
             <div class="time">11:30–13:00</div>
-            <div class="title">Arrive & Lunch</div>
+            <div class="title">Arrive &amp; Lunch</div>
             <div class="note">
               Park near Visitor Center / Grand Canyon Village, simple lunch.
             </div>
           </div>
           <div class="item">
             <div class="time">13:00–15:00</div>
-            <div class="title">Visitor Center & Rim Walk</div>
+            <div class="title">Visitor Center &amp; Rim Walk</div>
             <div class="note">Visitor Center, Mather Point, short Rim Trail stroll.</div>
           </div>
           <div class="item">
@@ -317,7 +373,7 @@
             <div class="time">16:30–Sunset</div>
             <div class="title">Sunset Viewpoints</div>
             <div class="note">
-              Walk to a nearby viewpoint for golden hour & sunset photos.
+              Walk to a nearby viewpoint for golden hour &amp; sunset photos.
             </div>
           </div>
           <div class="item">
@@ -335,7 +391,7 @@
             <div class="day-name">Saturday</div>
             <div class="day-date">Nov 29 · Grand Canyon → Vegas</div>
           </div>
-          <div class="day-tag">Sunrise, hike & return</div>
+          <div class="day-tag">Sunrise, hike &amp; return</div>
         </div>
         <div class="timeline">
           <div class="item">
@@ -357,7 +413,7 @@
           </div>
           <div class="item">
             <div class="time">11:00–12:00</div>
-            <div class="title">Pack & Checkout</div>
+            <div class="title">Pack &amp; Checkout</div>
             <div class="note">Showers if needed, grab snacks for the drive.</div>
           </div>
           <div class="item">
@@ -367,7 +423,7 @@
           </div>
           <div class="item">
             <div class="time">17:00–19:00</div>
-            <div class="title">Check-in at MGM & Wynn</div>
+            <div class="title">Check-in at MGM &amp; Wynn</div>
             <div class="note">
               Amy &amp; John check back in at <strong>MGM Grand</strong>.  
               Mom &amp; Dad check back in at <strong>Wynn Las Vegas</strong>.
@@ -390,7 +446,7 @@
             <div class="day-name">Sunday</div>
             <div class="day-date">Nov 30 · Vegas → Los Angeles</div>
           </div>
-          <div class="day-tag">Brunch & drive home</div>
+          <div class="day-tag">Brunch &amp; drive home</div>
         </div>
         <div class="timeline">
           <div class="item">
@@ -402,9 +458,9 @@
           </div>
           <div class="item">
             <div class="time">10:15–12:00</div>
-            <div class="title">Pack Up & Checkout</div>
+            <div class="title">Pack Up &amp; Checkout</div>
             <div class="note">
-              Head back to MGM Grand & Wynn, final packing, checkout, load car.
+              Head back to MGM Grand &amp; Wynn, final packing, checkout, load car.
             </div>
           </div>
           <div class="item">
@@ -426,13 +482,286 @@
     </section>
 
     <footer>
-      <span>Drive times are approximate and flexible around traffic & family needs.</span>
+      <span>Drive times are approximate and flexible around traffic &amp; family needs.</span>
       <div class="chip-group">
-        <span class="chip">Pace > checklists</span>
+        <span class="chip">Pace &gt; checklists</span>
         <span class="chip">Plenty of buffer time</span>
         <span class="chip">Shared brunch as the anchor</span>
       </div>
     </footer>
   </main>
+
+  <!-- KOREAN VERSION -->
+  <main class="page lang-section" data-lang="ko">
+    <header>
+      <div class="badge-row">
+        <span class="badge">가족 추수감사절 여행 · 2025</span>
+        <span class="badge">로스앤젤레스 → 라스베이거스 → 그랜드캐니언</span>
+      </div>
+      <h1>추수감사절 가족 로드트립 일정표</h1>
+      <p class="subtitle">
+        11월 27–30일 · 여유 있는 일정, 충분한 휴식, 온 가족이 함께하는 하이라이트 시간.
+      </p>
+
+      <div class="lodging-strip">
+        <span class="lodging-label">숙소 (목·토 밤):</span>
+        <span class="lodging-pill">에이미 &amp; 존 · MGM 그랜드</span>
+        <span class="lodging-pill">부모님 · 윈 라스베이거스</span>
+        <span class="lodging-pill">금요일 밤 · 엘 토바 호텔 (그랜드캐니언)</span>
+      </div>
+    </header>
+
+    <section class="cards-grid">
+      <!-- Day 1 -->
+      <article class="day-card">
+        <div class="day-header">
+          <div>
+            <div class="day-name">목요일</div>
+            <div class="day-date">11월 27일 · 로스앤젤레스 → 라스베이거스</div>
+          </div>
+          <div class="day-tag">이동 &amp; 체크인</div>
+        </div>
+        <div class="timeline">
+          <div class="item">
+            <div class="time">7:00–8:00</div>
+            <div class="title">LA 출발</div>
+            <div class="note">
+              간단한 아침 식사 후 차에 짐 싣고 I-15 북쪽 방향으로 출발.
+            </div>
+          </div>
+          <div class="item">
+            <div class="time">8:00–12:30</div>
+            <div class="title">라스베이거스로 이동</div>
+            <div class="note">
+              바스토우 등 휴게 지점에서 스트레칭/간식용 짧은 휴식.
+            </div>
+          </div>
+          <div class="item">
+            <div class="time">12:30–14:00</div>
+            <div class="title">체크인 &amp; 점심</div>
+            <div class="note">
+              에이미 &amp; 존: <strong>MGM 그랜드</strong> 체크인.  
+              부모님: <strong>윈 라스베이거스</strong> 체크인. 근처에서 간단한 점심.
+            </div>
+          </div>
+          <div class="item">
+            <div class="time">14:00–17:00</div>
+            <div class="title">휴식 &amp; 가벼운 산책</div>
+            <div class="note">
+              각 호텔에서 수영장, 낮잠, 짧은 산책 등으로 여유 있게 휴식.
+            </div>
+          </div>
+          <div class="item">
+            <div class="time">17:30–20:30</div>
+            <div class="title">가족 저녁 식사 &amp; 스트립 산책</div>
+            <div class="note">
+              벨라지오/아리아 쪽 등 중앙 지점에서 만나 저녁 식사 후 분수·야경 잠깐 구경,  
+              이후 각자 호텔로 돌아가 일찍 취침.
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Day 2 -->
+      <article class="day-card">
+        <div class="day-header">
+          <div>
+            <div class="day-name">금요일</div>
+            <div class="day-date">11월 28일 · 베이거스 → 그랜드캐니언</div>
+          </div>
+          <div class="day-tag">사우스 림 &amp; 석양</div>
+        </div>
+        <div class="timeline">
+          <div class="item">
+            <div class="time">6:00–6:30</div>
+            <div class="title">아침 &amp; 체크아웃</div>
+            <div class="note">
+              간단한 커피/아침 식사 후 MGM 그랜드 &amp; 윈에서 체크아웃, 차에 짐 싣기.
+            </div>
+          </div>
+          <div class="item">
+            <div class="time">6:30–11:30</div>
+            <div class="title">그랜드캐니언 사우스 림으로 이동</div>
+            <div class="note">
+              US-93 &amp; I-40 경로로 이동, 중간에 화장실/간식용 짧은 휴식 1–2회.
+            </div>
+          </div>
+          <div class="item">
+            <div class="time">11:30–13:00</div>
+            <div class="title">도착 &amp; 점심</div>
+            <div class="note">
+              비지터 센터/그랜드캐니언 빌리지 근처에 주차 후 간단한 점심.
+            </div>
+          </div>
+          <div class="item">
+            <div class="time">13:00–15:00</div>
+            <div class="title">비지터 센터 &amp; 림 트레일</div>
+            <div class="note">
+              비지터 센터, 메이더 포인트, 림 트레일을 따라 짧은 산책.
+            </div>
+          </div>
+          <div class="item">
+            <div class="time">15:00–16:30</div>
+            <div class="title">엘 토바 호텔 체크인</div>
+            <div class="note">
+              객실에 짐 풀고 잠깐 휴식, 재충전 시간.
+            </div>
+          </div>
+          <div class="item">
+            <div class="time">16:30–석양</div>
+            <div class="title">석양 감상</div>
+            <div class="note">
+              가까운 전망대로 걸어가 골든아워 &amp; 석양 풍경 감상 및 사진 촬영.
+            </div>
+          </div>
+          <div class="item">
+            <div class="time">18:00–20:00</div>
+            <div class="title">빌리지에서 저녁 식사</div>
+            <div class="note">
+              엘 토바 다이닝룸 또는 주변 레스토랑에서 저녁 식사 후 일찍 휴식.
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Day 3 -->
+      <article class="day-card">
+        <div class="day-header">
+          <div>
+            <div class="day-name">토요일</div>
+            <div class="day-date">11월 29일 · 그랜드캐니언 → 베이거스</div>
+          </div>
+          <div class="day-tag">일출, 하이킹, 라스베이거스 복귀</div>
+        </div>
+        <div class="timeline">
+          <div class="item">
+            <div class="time">~6:30</div>
+            <div class="title">림에서 일출 감상</div>
+            <div class="note">
+              엘 토바에서 가까운 림 전망대로 걸어가 일출 보기.
+            </div>
+          </div>
+          <div class="item">
+            <div class="time">7:00–8:00</div>
+            <div class="title">아침 식사</div>
+            <div class="note">
+              로지에서 따뜻한 아침 식사.
+            </div>
+          </div>
+          <div class="item">
+            <div class="time">8:30–11:00</div>
+            <div class="title">아침 하이킹</div>
+            <div class="note">
+              브라이트 엔젤 트레일 일부 또는 쉬운 림 트레일 구간을 가족이 다닐 수 있는 거리만큼 왕복.  
+              너무 가파르기 전에 돌아오기.
+            </div>
+          </div>
+          <div class="item">
+            <div class="time">11:00–12:00</div>
+            <div class="title">짐 정리 &amp; 체크아웃</div>
+            <div class="note">
+              필요하면 샤워 후, 차량용 간식 챙기고 체크아웃.
+            </div>
+          </div>
+          <div class="item">
+            <div class="time">12:00–17:00</div>
+            <div class="title">라스베이거스로 이동</div>
+            <div class="note">
+              같은 경로로 돌아오며 중간에 1–2회 짧은 휴식.
+            </div>
+          </div>
+          <div class="item">
+            <div class="time">17:00–19:00</div>
+            <div class="title">MGM &amp; 윈 체크인</div>
+            <div class="note">
+              에이미 &amp; 존: <strong>MGM 그랜드</strong> 재체크인.  
+              부모님: <strong>윈 라스베이거스</strong> 재체크인.
+            </div>
+          </div>
+          <div class="item">
+            <div class="time">19:00–21:00</div>
+            <div class="title">가벼운 저녁 식사</div>
+            <div class="note">
+              함께 또는 각 호텔 근처에서 간단히 저녁 식사 후,  
+              다음날 브런치를 위해 일찍 휴식.
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Day 4 -->
+      <article class="day-card">
+        <div class="day-header">
+          <div>
+            <div class="day-name">일요일</div>
+            <div class="day-date">11월 30일 · 베이거스 → 로스앤젤레스</div>
+          </div>
+          <div class="day-tag">브런치 &amp; 귀가</div>
+        </div>
+        <div class="timeline">
+          <div class="item">
+            <div class="time">8:45–10:15</div>
+            <div class="title">윈 홀리데이 뷔페 브런치</div>
+            <div class="note">
+              <strong>윈 뷔페 (The Buffet at Wynn)</strong> 홀리데이 브런치 가족 예약  
+              · 8:45 a.m. 착석.
+            </div>
+          </div>
+          <div class="item">
+            <div class="time">10:15–12:00</div>
+            <div class="title">짐 정리 &amp; 체크아웃</div>
+            <div class="note">
+              MGM 그랜드 &amp; 윈으로 돌아가 최종 짐 정리, 체크아웃, 차에 짐 싣기.
+            </div>
+          </div>
+          <div class="item">
+            <div class="time">12:00–16:30</div>
+            <div class="title">LA로 이동</div>
+            <div class="note">
+              I-15 남쪽으로 이동, 중간중간 화장실/휴식.  
+              교통 상황에 따라 도착 시간 유동적.
+            </div>
+          </div>
+          <div class="item">
+            <div class="time">저녁</div>
+            <div class="title">집 도착</div>
+            <div class="note">
+              짐 내리고 간단히 정리 후, 가벼운 저녁 식사 및 다음 주 준비.
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <footer>
+      <span>이동 시간은 대략적인 기준이며, 교통 상황과 가족 컨디션에 따라 조정 가능합니다.</span>
+      <div class="chip-group">
+        <span class="chip">빡빡한 일정보다 여유</span>
+        <span class="chip">충분한 버퍼 시간</span>
+        <span class="chip">브런치를 여행의 앵커로</span>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      const buttons = document.querySelectorAll('[data-switch-lang]');
+      const sections = document.querySelectorAll('.lang-section');
+
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const targetLang = btn.getAttribute('data-switch-lang');
+
+          sections.forEach((sec) => {
+            sec.classList.toggle('active', sec.getAttribute('data-lang') === targetLang);
+          });
+
+          buttons.forEach((b) => {
+            b.classList.toggle('is-active', b === btn);
+          });
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
