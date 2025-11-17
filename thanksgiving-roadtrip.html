@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Family Thanksgiving Road Trip</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #f5f5f3;
+      --card-bg: #ffffff;
+      --accent: #444444;
+      --muted: #777777;
+      --border: #e0e0dd;
+      --shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #fdfcf8, #f3f3f1);
+      color: #111111;
+      padding: 32px 16px 48px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 960px;
+    }
+
+    header {
+      margin-bottom: 24px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .badge {
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(8px);
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 650;
+      letter-spacing: 0.02em;
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .lodging-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 12px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .lodging-label {
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .lodging-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px dashed var(--border);
+      background: #fafaf7;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    @media (min-width: 768px) {
+      .cards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .day-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 18px 18px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .day-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .day-name {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .day-date {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .day-tag {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: #fafaf7;
+      white-space: nowrap;
+    }
+
+    .timeline {
+      margin-top: 4px;
+      padding-left: 2px;
+    }
+
+    .item {
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr);
+      column-gap: 14px;
+      row-gap: 2px;
+      padding: 8px 0;
+      border-bottom: 1px solid #f0f0ec;
+      font-size: 13px;
+    }
+
+    .item:last-child {
+      border-bottom: none;
+    }
+
+    .time {
+      font-variant-numeric: tabular-nums;
+      color: var(--muted);
+    }
+
+    .title {
+      font-weight: 500;
+      color: #222222;
+    }
+
+    .note {
+      grid-column: 2 / 3;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 1px;
+    }
+
+    footer {
+      margin-top: 28px;
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .chip-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .chip {
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px dashed var(--border);
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div class="badge-row">
+        <span class="badge">Family Thanksgiving Trip · 2025</span>
+        <span class="badge">Los Angeles → Las Vegas → Grand Canyon</span>
+      </div>
+      <h1>Thanksgiving Road Trip Itinerary</h1>
+      <p class="subtitle">
+        Nov 27–30 · Simple pacing, plenty of rest, and anchor moments for the
+        whole family.
+      </p>
+
+      <div class="lodging-strip">
+        <span class="lodging-label">Lodging (Thu & Sat nights):</span>
+        <span class="lodging-pill">Amy &amp; John · MGM Grand</span>
+        <span class="lodging-pill">Mom &amp; Dad · Wynn Las Vegas</span>
+        <span class="lodging-pill">Fri night · El Tovar Hotel (Grand Canyon)</span>
+      </div>
+    </header>
+
+    <section class="cards-grid">
+      <!-- Day 1 -->
+      <article class="day-card">
+        <div class="day-header">
+          <div>
+            <div class="day-name">Thursday</div>
+            <div class="day-date">Nov 27 · Los Angeles → Las Vegas</div>
+          </div>
+          <div class="day-tag">Drive & settle in</div>
+        </div>
+        <div class="timeline">
+          <div class="item">
+            <div class="time">7:00–8:00</div>
+            <div class="title">Depart Los Angeles</div>
+            <div class="note">Light breakfast, load car, I-15 N toward Las Vegas.</div>
+          </div>
+          <div class="item">
+            <div class="time">8:00–12:30</div>
+            <div class="title">Drive to Las Vegas</div>
+            <div class="note">Short stretch/snack stops (Barstow or similar) as needed.</div>
+          </div>
+          <div class="item">
+            <div class="time">12:30–14:00</div>
+            <div class="title">Check-in & Lunch</div>
+            <div class="note">
+              Amy &amp; John check in at <strong>MGM Grand</strong>.  
+              Mom &amp; Dad check in at <strong>Wynn Las Vegas</strong>. Quick lunch nearby.
+            </div>
+          </div>
+          <div class="item">
+            <div class="time">14:00–17:00</div>
+            <div class="title">Rest & Light Exploring</div>
+            <div class="note">
+              Pool, nap, or short walk around each hotel; keep energy low-key.
+            </div>
+          </div>
+          <div class="item">
+            <div class="time">17:30–20:30</div>
+            <div class="title">Family Dinner & Strip Walk</div>
+            <div class="note">
+              Meet up somewhere central (e.g., near Bellagio/Aria), early dinner, quick look at fountains/lights, back to hotels for an early night.
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Day 2 -->
+      <article class="day-card">
+        <div class="day-header">
+          <div>
+            <div class="day-name">Friday</div>
+            <div class="day-date">Nov 28 · Vegas → Grand Canyon</div>
+          </div>
+          <div class="day-tag">South Rim & sunset</div>
+        </div>
+        <div class="timeline">
+          <div class="item">
+            <div class="time">6:00–6:30</div>
+            <div class="title">Breakfast & Checkout</div>
+            <div class="note">
+              Quick coffee/breakfast, check out of MGM Grand & Wynn, load car.
+            </div>
+          </div>
+          <div class="item">
+            <div class="time">6:30–11:30</div>
+            <div class="title">Drive to Grand Canyon South Rim</div>
+            <div class="note">Via US-93 & I-40, one or two short stops for bathroom/snacks.</div>
+          </div>
+          <div class="item">
+            <div class="time">11:30–13:00</div>
+            <div class="title">Arrive & Lunch</div>
+            <div class="note">
+              Park near Visitor Center / Grand Canyon Village, simple lunch.
+            </div>
+          </div>
+          <div class="item">
+            <div class="time">13:00–15:00</div>
+            <div class="title">Visitor Center & Rim Walk</div>
+            <div class="note">Visitor Center, Mather Point, short Rim Trail stroll.</div>
+          </div>
+          <div class="item">
+            <div class="time">15:00–16:30</div>
+            <div class="title">Check-in at El Tovar</div>
+            <div class="note">Settle into room, short rest, recharge.</div>
+          </div>
+          <div class="item">
+            <div class="time">16:30–Sunset</div>
+            <div class="title">Sunset Viewpoints</div>
+            <div class="note">
+              Walk to a nearby viewpoint for golden hour & sunset photos.
+            </div>
+          </div>
+          <div class="item">
+            <div class="time">18:00–20:00</div>
+            <div class="title">Dinner at the Village</div>
+            <div class="note">Dinner at El Tovar Dining Room or nearby; early wind-down.</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Day 3 -->
+      <article class="day-card">
+        <div class="day-header">
+          <div>
+            <div class="day-name">Saturday</div>
+            <div class="day-date">Nov 29 · Grand Canyon → Vegas</div>
+          </div>
+          <div class="day-tag">Sunrise, hike & return</div>
+        </div>
+        <div class="timeline">
+          <div class="item">
+            <div class="time">~6:30</div>
+            <div class="title">Sunrise on the Rim</div>
+            <div class="note">Short walk from El Tovar to a rim viewpoint.</div>
+          </div>
+          <div class="item">
+            <div class="time">7:00–8:00</div>
+            <div class="title">Breakfast</div>
+            <div class="note">Warm up, simple breakfast at the lodge.</div>
+          </div>
+          <div class="item">
+            <div class="time">8:30–11:00</div>
+            <div class="title">Morning Hike</div>
+            <div class="note">
+              Family-friendly distance on Bright Angel Trail or an easy Rim Trail segment; turn around before it gets too steep.
+            </div>
+          </div>
+          <div class="item">
+            <div class="time">11:00–12:00</div>
+            <div class="title">Pack & Checkout</div>
+            <div class="note">Showers if needed, grab snacks for the drive.</div>
+          </div>
+          <div class="item">
+            <div class="time">12:00–17:00</div>
+            <div class="title">Drive Back to Las Vegas</div>
+            <div class="note">Return via same route; one or two short rest stops.</div>
+          </div>
+          <div class="item">
+            <div class="time">17:00–19:00</div>
+            <div class="title">Check-in at MGM & Wynn</div>
+            <div class="note">
+              Amy &amp; John check back in at <strong>MGM Grand</strong>.  
+              Mom &amp; Dad check back in at <strong>Wynn Las Vegas</strong>.
+            </div>
+          </div>
+          <div class="item">
+            <div class="time">19:00–21:00</div>
+            <div class="title">Casual Dinner</div>
+            <div class="note">
+              Light dinner (either together or near each hotel), early night before brunch.
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Day 4 -->
+      <article class="day-card">
+        <div class="day-header">
+          <div>
+            <div class="day-name">Sunday</div>
+            <div class="day-date">Nov 30 · Vegas → Los Angeles</div>
+          </div>
+          <div class="day-tag">Brunch & drive home</div>
+        </div>
+        <div class="timeline">
+          <div class="item">
+            <div class="time">8:45–10:15</div>
+            <div class="title">Wynn Holiday Buffet Brunch</div>
+            <div class="note">
+              Family brunch reservation at <strong>The Buffet at Wynn</strong> (Holiday Brunch · 8:45 a.m. seating).
+            </div>
+          </div>
+          <div class="item">
+            <div class="time">10:15–12:00</div>
+            <div class="title">Pack Up & Checkout</div>
+            <div class="note">
+              Head back to MGM Grand & Wynn, final packing, checkout, load car.
+            </div>
+          </div>
+          <div class="item">
+            <div class="time">12:00–16:30</div>
+            <div class="title">Drive to Los Angeles</div>
+            <div class="note">
+              I-15 S with rest/bathroom stops as needed; arrival time flexible with traffic.
+            </div>
+          </div>
+          <div class="item">
+            <div class="time">Evening</div>
+            <div class="title">Arrive Home</div>
+            <div class="note">
+              Unload, quick tidy, light dinner, reset for the week.
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <footer>
+      <span>Drive times are approximate and flexible around traffic & family needs.</span>
+      <div class="chip-group">
+        <span class="chip">Pace > checklists</span>
+        <span class="chip">Plenty of buffer time</span>
+        <span class="chip">Shared brunch as the anchor</span>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
